@@ -6,9 +6,14 @@ import { Link, NavLink } from 'react-router-dom'
 const Bar = () => {
   return (
     <>
-      <Navbar bg="dark" expand="lg" className="text-uppercase">
+      <h5 className="mt-3 w-25 mx-auto card">Admin Dashboard</h5>
+      <Navbar
+        bg="dark"
+        expand="lg"
+        className="text-uppercase w-75 mx-auto mt-2 rounded sticky-top"
+      >
         <Container>
-          <Link to="/" className="logo">
+          <Link to="/home" className="logo">
             <img
               src="https://i.ibb.co/k0kDnJP/logo.png"
               className="symbol"
