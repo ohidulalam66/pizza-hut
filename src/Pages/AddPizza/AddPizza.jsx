@@ -4,9 +4,10 @@ import './AddPizza.css'
 import { useForm } from 'react-hook-form'
 import { Container, Form, Stack } from 'react-bootstrap'
 import ReactStars from 'react-rating-stars-component'
+import swal from 'sweetalert'
 
 const AddPizza = () => {
-  const [star, setStar] = useState(0)
+  const [star, setStar] = useState('')
   const { register, handleSubmit, reset } = useForm()
 
   const ratingChanged = (newRating) => {
@@ -15,6 +16,7 @@ const AddPizza = () => {
 
   const onSubmit = (data) => {
     const newData = { ...data, star }
+    console.log(newData)
     if (newData.name && newData.image && newData.price && newData.star) {
       fetch('', {
         method: 'POST',
@@ -26,14 +28,14 @@ const AddPizza = () => {
         .then((res) => res.json())
         .then((result) => {
           if (result) {
-            alert('Congratulation! Your Book Blog Submit success')
+            swal('Congratulation!', 'Your Book Blog Submit', 'success')
             reset()
           } else {
-            alert('Sorry! Your Book Blog has not been submitted')
+            swal('Sorry!', 'Your Book Blog has not been submitted', 'error')
           }
         })
     } else {
-      alert('Sorry! Your Book Blog has not been submitted')
+      swal('Sorry!', 'Your Book Blog has not been submitted', 'error')
     }
   }
   return (
