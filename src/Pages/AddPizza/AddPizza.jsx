@@ -18,7 +18,7 @@ const AddPizza = () => {
     const newData = { ...data, star }
     console.log(newData)
     if (newData.name && newData.image && newData.price && newData.star) {
-      fetch('', {
+      fetch('http://localhost:5000/addPizza', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -28,14 +28,14 @@ const AddPizza = () => {
         .then((res) => res.json())
         .then((result) => {
           if (result) {
-            swal('Congratulation!', 'Your Book Blog Submit', 'success')
+            swal('Congratulation!', 'Your Pizza Post Submit', 'success')
             reset()
           } else {
-            swal('Sorry!', 'Your Book Blog has not been submitted', 'error')
+            swal('Sorry!', 'Your Pizza Post has not been submitted', 'error')
           }
         })
     } else {
-      swal('Sorry!', 'Your Book Blog has not been submitted', 'error')
+      swal('Sorry!', 'Your Pizza Post has not been submitted', 'error')
     }
   }
   return (
@@ -43,8 +43,8 @@ const AddPizza = () => {
       <Bar />
       <Container>
         <Form onSubmit={handleSubmit(onSubmit)} className="mt-5">
-          <Stack direction="horizontal" className="d-flex align-items-center">
-            <h4 className="text-muted">Add Pizza</h4>
+          <Stack direction="horizontal">
+            <h4 className="text-danger">Add Pizza</h4>
             <button
               type="submit"
               className="px-2 py-1 text-uppercase ms-auto submitButton"

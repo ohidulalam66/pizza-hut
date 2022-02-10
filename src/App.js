@@ -17,7 +17,6 @@ function App() {
           <Route path="/updatePizza" element={<UpdatePizza />} />
         </Routes>
       </BrowserRouter>
-      ,
     </div>
   )
 }
