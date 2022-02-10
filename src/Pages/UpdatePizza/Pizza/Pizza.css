@@ -1,3 +1,19 @@
 .image {
     width: 100px;
 }
+
+.submitButton {
+    color: black;
+    border: none;
+    font-weight: 500;
+    border-radius: 9px;
+    background: rgba(160, 155, 155, 0.329);
+    box-shadow:  5px 5px 10px #bababa,
+             -5px -5px 10px #ffffff;
+    
+}
+
+.submitButton:hover {
+    color: rgb(126, 38, 38);
+    background: rgb(204, 125, 125);
+}

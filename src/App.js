@@ -5,6 +5,7 @@ import Home from './Pages/Home/Home'
 import AddPizza from './Pages/AddPizza/AddPizza'
 import UpdatePizza from './Pages/UpdatePizza/UpdatePizza'
 import Login from './Pages/Secure/Login/Login'
+import EditPizza from './Pages/UpdatePizza/EditPizza/EditPizza'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/addPizza" element={<AddPizza />} />
           <Route path="/updatePizza" element={<UpdatePizza />} />
+          <Route path="/updatePizza/edit/:id" element={<EditPizza />} />
         </Routes>
       </BrowserRouter>
     </div>

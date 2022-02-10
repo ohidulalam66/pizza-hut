@@ -1,10 +1,10 @@
+const { MongoClient } = require('mongodb')
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const { MongoClient } = require('mongodb')
 require('dotenv').config()
-// const ObjectId = require('mongodb').ObjectId
-// const { ObjectID } = require('bson')
+const ObjectId = require('mongodb').ObjectId
+const { ObjectID } = require('bson')
 
 const port = process.env.PORT || 5000
 
@@ -40,12 +40,12 @@ async function run() {
     })
 
     // DELETE single Order API
-    // app.delete('/books/:id', async (req, res) => {
-    //   const id = req.params.id
-    //   const query = { _id: ObjectId(id) }
-    //   const result = await booksCollection.deleteOne(query)
-    //   res.json(result)
-    // })
+    app.delete('/deletePizzas/:id', async (req, res) => {
+      const id = req.params.id
+      const query = { _id: ObjectId(id) }
+      const result = await pizzaCollection.deleteOne(query)
+      res.json(result)
+    })
   } finally {
     // await client.close();
   }
