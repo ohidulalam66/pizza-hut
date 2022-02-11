@@ -32,14 +32,22 @@ async function run() {
       res.json(result)
     })
 
-    // GET all Orders API
+    // GET all pizza API
     app.get('/getPizza', async (req, res) => {
       const cursor = pizzaCollection.find({})
       const pizzas = await cursor.toArray()
       res.send(pizzas)
     })
 
-    // DELETE single Order API
+    // GET single pizza API
+    app.get('/getPizza/:id', async (req, res) => {
+      const id = req.params.id
+      const query = { _id: ObjectId(id) }
+      const pizza = await pizzaCollection.findOne(query)
+      res.send(pizza)
+    })
+
+    // DELETE single pizza API
     app.delete('/deletePizzas/:id', async (req, res) => {
       const id = req.params.id
       const query = { _id: ObjectId(id) }

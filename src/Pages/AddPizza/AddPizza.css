@@ -1,4 +1,4 @@
-input, textarea {
+input, textarea, select{
     border: none;
     background: #ffffff;
     box-shadow:  5px 5px 10px #bababa,
