@@ -1,34 +1,37 @@
 import React, { useState } from 'react'
-import './Login.css'
 import { Alert, Button, Container, Form, Spinner } from 'react-bootstrap'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import useAuth from '../../Hooks/useAuth'
-import { FaGoogle } from 'react-icons/fa'
 
-const Login = () => {
-  const [logInData, setLogInData] = useState({})
+const Register = () => {
+  const { user, registerUser, loading, error } = useAuth()
+  const [RegisterData, setRegisterData] = useState({})
 
-  const { user, loginUser, signInWithGoogle, loading, error } = useAuth()
-
-  const location = useLocation()
   const navigate = useNavigate()
 
   const handleOnBlur = (e) => {
     const field = e.target.name
     const value = e.target.value
-    const newLoginData = { ...logInData }
-    newLoginData[field] = value
-    setLogInData(newLoginData)
+    const newRegisterData = { ...RegisterData }
+    newRegisterData[field] = value
+    console.log(newRegisterData)
+    setRegisterData(newRegisterData)
   }
 
-  const handleLoginSubmit = (e) => {
-    loginUser(logInData.email, logInData.password, location, navigate)
+  const handleRegisterSubmit = (e) => {
+    if (RegisterData.password !== RegisterData.password2) {
+      ;<Alert variant="danger">Wrong! Did not Your Password Match.</Alert>
+      return
+    }
+    registerUser(
+      RegisterData.name,
+      RegisterData.email,
+      RegisterData.password,
+      navigate,
+    )
     e.preventDefault()
   }
 
-  const handleGoogleSignIn = () => {
-    signInWithGoogle(location, navigate)
-  }
   return (
     <>
       <Container>
@@ -39,8 +42,15 @@ const Login = () => {
             alt=""
           />
         </div>
-        <h5 className="text-start">Login</h5>
-        <Form onSubmit={handleLoginSubmit}>
+        <h5 className="text-start">Register</h5>
+        <Form onSubmit={handleRegisterSubmit}>
+          <Form.Control
+            className="mb-3"
+            onBlur={handleOnBlur}
+            type="name"
+            name="name"
+            placeholder="Your Name*"
+          />
           <Form.Control
             className="mb-3"
             onBlur={handleOnBlur}
@@ -55,15 +65,21 @@ const Login = () => {
             name="password"
             placeholder="Password*"
           />
+          <Form.Control
+            className="mb-3"
+            onBlur={handleOnBlur}
+            type="password"
+            name="password2"
+            placeholder="Re-Password*"
+          />
           <Button
-            type="submit"
             variant="btn btn-outline-success"
             className="my-3"
+            type="submit"
           >
-            LOGIN
+            REGISTER
           </Button>
         </Form>
-
         {loading && (
           <Spinner
             animation="border"
@@ -83,20 +99,13 @@ const Login = () => {
             {error}
           </Alert>
         )}
-        <Button
-          className="google-btn"
-          variant="btn btn-outline-danger"
-          onClick={handleGoogleSignIn}
-        >
-          <FaGoogle /> Sign In Google
-        </Button>
-        <br />
-        <Link className="text-success my-2" to="/register">
-          New User? Please, Register
+
+        <Link className="text-success my-3" to="/login">
+          Already Register? Please, Login
         </Link>
       </Container>
     </>
   )
 }
 
-export default Login
+export default Register

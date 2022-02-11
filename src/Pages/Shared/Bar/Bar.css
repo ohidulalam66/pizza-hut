@@ -25,7 +25,8 @@
     background: rgba(34, 139, 34, 0.644);
     color: black;
 }
-.userHero {
+.userPic {
     width: 40px;
     height: 40px;
+    border-radius: 50%;
 }

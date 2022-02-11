@@ -50,7 +50,7 @@ const useFirebase = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setError('')
-        const destination = location?.state?.from || '/home'
+        const destination = '/home'
         navigate(destination)
       })
       .catch((error) => {
@@ -65,8 +65,8 @@ const useFirebase = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user
-        const destination = location?.state?.from || '/'
-        navigate.replace(destination)
+        const destination = '/home'
+        navigate(destination)
       })
       .catch((error) => {
         setError(error.message)
