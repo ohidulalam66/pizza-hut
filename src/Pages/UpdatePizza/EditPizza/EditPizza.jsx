@@ -12,7 +12,7 @@ const EditPizza = () => {
   const [editPizza, setEditPizza] = useState({})
 
   useEffect(() => {
-    const url = `http://localhost:5000/getPizza/${id}`
+    const url = `https://intense-meadow-27803.herokuapp.com/getPizza/${id}`
     fetch(url)
       .then((res) => res.json())
       .then((data) => setEditPizza(data))
@@ -60,7 +60,7 @@ const EditPizza = () => {
 
   const editPizzaHandle = (e) => {
     e.preventDefault()
-    const url = `http://localhost:5000/updatePizza/${id}`
+    const url = `https://intense-meadow-27803.herokuapp.com/updatePizza/${id}`
     fetch(url, {
       method: 'PUT',
       headers: {

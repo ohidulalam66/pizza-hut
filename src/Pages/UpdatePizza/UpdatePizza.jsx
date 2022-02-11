@@ -8,7 +8,7 @@ const UpdatePizza = () => {
   const [pizzas, setPizzas] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:5000/getPizza')
+    fetch('https://intense-meadow-27803.herokuapp.com/getPizza')
       .then((res) => res.json())
       .then((data) => setPizzas(data))
   }, [])
@@ -22,7 +22,7 @@ const UpdatePizza = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        const url = `http://localhost:5000/deletePizzas/${id}`
+        const url = `https://intense-meadow-27803.herokuapp.com/deletePizzas/${id}`
         fetch(url, {
           method: 'DELETE',
         })

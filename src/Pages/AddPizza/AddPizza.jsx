@@ -18,7 +18,7 @@ const AddPizza = () => {
     const newData = { ...data, star }
     console.log(newData)
     if (newData.name && newData.image && newData.price && newData.star) {
-      fetch('http://localhost:5000/addPizza', {
+      fetch('https://intense-meadow-27803.herokuapp.com/addPizza', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',

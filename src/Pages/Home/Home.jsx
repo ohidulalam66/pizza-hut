@@ -7,7 +7,7 @@ const Home = () => {
   const [pizzas, setPizzas] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:5000/getPizza')
+    fetch('https://intense-meadow-27803.herokuapp.com/getPizza')
       .then((res) => res.json())
       .then((data) => setPizzas(data))
   }, [])
