@@ -47,6 +47,24 @@ async function run() {
       res.send(pizza)
     })
 
+    // PUT single pizza
+    app.put('/updatePizza/:id', async (req, res) => {
+      const id = req.params.id
+      const updatedPizza = req.body
+      const filter = { _id: ObjectId(id) }
+      const options = { upsert: true }
+      const updateDoc = {
+        $set: {
+          name: updatedPizza.name,
+          image: updatedPizza.image,
+          price: updatedPizza.price,
+          star: updatedPizza.star,
+          description: updatedPizza.description,
+        },
+      }
+      const result = await pizzaCollection.updateOne(filter, updateDoc, options)
+      res.json(result)
+    })
     // DELETE single pizza API
     app.delete('/deletePizzas/:id', async (req, res) => {
       const id = req.params.id

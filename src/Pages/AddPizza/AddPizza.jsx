@@ -28,7 +28,7 @@ const AddPizza = () => {
         .then((res) => res.json())
         .then((result) => {
           if (result) {
-            swal('Congratulation!', 'Your Pizza Post Submit', 'success')
+            swal('Done!', 'Your Pizza Post Submit', 'success')
             reset()
           } else {
             swal('Sorry!', 'Your Pizza Post has not been submitted', 'error')

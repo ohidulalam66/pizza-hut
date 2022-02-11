@@ -1,9 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
-import ReactStars from 'react-rating-stars-component'
+import './EditPizza.css'
 import { Col, Container, Form, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import Bar from '../../Shared/Bar/Bar'
+import swal from 'sweetalert'
+// import Rating from 'react-rating'
 
 const EditPizza = () => {
   const { id } = useParams()
@@ -58,6 +60,22 @@ const EditPizza = () => {
 
   const editPizzaHandle = (e) => {
     e.preventDefault()
+    const url = `http://localhost:5000/updatePizza/${id}`
+    fetch(url, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(editPizza),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          swal('Done!', 'Your Pizza Post Updated', 'success')
+        } else {
+          swal('Sorry!', 'Your Pizza Post has not been Updated', 'error')
+        }
+      })
   }
   return (
     <>
@@ -69,6 +87,13 @@ const EditPizza = () => {
             <h3>{editPizza?.name}</h3>
             <img src={editPizza?.image} className="w-75" alt="" />
             <h5>Price: ${editPizza?.price}</h5>
+            {/* <Rating
+              initialRating={editPizza?.star}
+              className="star-rating"
+              readonly
+              emptySymbol="fa fa-star-o fa-2x"
+              fullSymbol="fa fa-star fa-2x"
+            /> */}
             <h5>Rating: {editPizza?.star}⭐</h5>
             <h6>{editPizza?.description}</h6>
           </Col>

@@ -6,19 +6,22 @@ import AddPizza from './Pages/AddPizza/AddPizza'
 import UpdatePizza from './Pages/UpdatePizza/UpdatePizza'
 import Login from './Pages/Secure/Login/Login'
 import EditPizza from './Pages/UpdatePizza/EditPizza/EditPizza'
+import AuthProvider from './Pages/Shared/Context/AuthProvider/AuthProvider'
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/addPizza" element={<AddPizza />} />
-          <Route path="/updatePizza" element={<UpdatePizza />} />
-          <Route path="/updatePizza/edit/:id" element={<EditPizza />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/addPizza" element={<AddPizza />} />
+            <Route path="/updatePizza" element={<UpdatePizza />} />
+            <Route path="/updatePizza/edit/:id" element={<EditPizza />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   )
 }
