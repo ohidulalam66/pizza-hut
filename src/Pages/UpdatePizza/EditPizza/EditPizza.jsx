@@ -5,7 +5,7 @@ import { Col, Container, Form, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import Bar from '../../Shared/Bar/Bar'
 import swal from 'sweetalert'
-// import Rating from 'react-rating'
+import Rating from 'react-rating'
 
 const EditPizza = () => {
   const { id } = useParams()
@@ -84,17 +84,16 @@ const EditPizza = () => {
         <h4 className="text-start text-danger">Edit Pizza</h4>
         <Row>
           <Col className="text-start">
-            <h3>{editPizza?.name}</h3>
+            <h3 className="fw-bold">{editPizza?.name}</h3>
             <img src={editPizza?.image} className="w-75" alt="" />
             <h5>Price: ${editPizza?.price}</h5>
-            {/* <Rating
+            <Rating
               initialRating={editPizza?.star}
               className="star-rating"
               readonly
               emptySymbol="fa fa-star-o fa-2x"
               fullSymbol="fa fa-star fa-2x"
-            /> */}
-            <h5>Rating: {editPizza?.star}⭐</h5>
+            />
             <h6>{editPizza?.description}</h6>
           </Col>
           <Col>
